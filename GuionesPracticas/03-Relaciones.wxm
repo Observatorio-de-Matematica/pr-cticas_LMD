@@ -1,0 +1,841 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 22.04.0 ] */
+/* [wxMaxima: comment start ]
+Alumno: David Cabezas Berrido
+DNI: 20079906D
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: title   start ]
+Relaciones binarias.
+   [wxMaxima: title   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Tenemos que cargar el paquete relaciones.mac
+
+Hay tres formas de hacerlo:
+1) Mediante el menú. Archivo->Cargar paquete (Ctrl-L)
+2) Poniendo el espacio de trabajo en la ruta. Maxima->Añadir a la ruta. 
+   Y cargar con la orden load(relaciones)$ 
+3) Poniéndolo en un lugar que lo encuentre.
+   Y cargar con la orden load(relaciones)$
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+load("C:/Users/dxabe/Desktop/DGIIM/Lógica y Métodos Discretos/Prácticas/relaciones/relaciones.mac")$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: section start ]
+Relaciones, propiedades y diagramas de Hasse.
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: comment start ]
+Si nos dan una relación R mediante un conjunto de pares.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+R:{[a,b],[a,c],[b,c],[c,c],[d,b]};
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Podemos preguntar por el menor conjunto que contiene a todos los elementos de las parejas
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+universo(R);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Si preguntamos por sus propiedades se supone que es en su universo.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: comment start ]
+Ahora podemos preguntarnos si la relación R recién definida es reflexiva, simétrica, antisimétrica, 
+transitiva, conectada.
+----------------------------------------------------------------------------------------------------------------
+Reflexiva: ∀ x ∈ U(R), (x,x)∈R.
+Simétrica: ∀ x,y, (x,y)∈R → (y,x)∈R.
+Antisimétrica: ∀ x,y, (x,y)∈R e (y,x)∈R → x=y.
+(Equivalentemente,  ∀ x,y∈U(R) distintos, (x,y)∈R → (y,x) NO ∈R.)
+Transitiva: ∀ x,y,z, (x,y)∈R y (y,z)∈R → (x,z)∈R.
+Conectada: ∀ x,y∈U(R), x distinto de y → (x,y)∈R o (y,x)∈R.
+-----------------------------------------------------------------------------------------------------------------
+Se entiende que todas estas preguntas son relativas al universo de la relación R.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+es_reflexiva(R);        
+es_simetrica(R);
+es_antisimetrica(R);
+es_transitiva(R);
+es_conectada(R);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+También podemos preguntar por sus propiedades sobre otro conjunto
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+es_reflexiva(R,{c});
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Es lo mismo que hallar su restriccion y preguntar por la nueva relación
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+A:{a,b,c};
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+S:restriccion(R,A);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+es_transitiva(S);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Definamos 4 relaciones que sólo cumplan una de las características, es decir, R1 sólo cumple la reflexibilidad,
+R2 la simetría, etc.
+En los comentarios se explicará una razón por la cual no cumple dicha característica.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+R1:{[1,1],[2,2],[3,3],[1,2],[2,1],[2,3]};
+R2:{[1,2],[2,1]};
+R3:{[1,2],[2,3]};
+R4:{[1,1],[2,2],[1,2],[2,1],[2,3],[1,3]};
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+universo(R1);
+universo(R2);
+universo(R3);
+universo(R4);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+es_reflexiva(R1);
+es_reflexiva(R2);  /* 1 (respectivamente 2, 3) no está relacionado con 1 (resp. 2, 3) */
+es_reflexiva(R3);  /* 1 (resp. 2, 3) no está relacionado con 1 (resp. 2, 3) */
+es_reflexiva(R4);  /* 3 no está relacionado con 3 (tiene que darse en todos los elementos del conjunto) */;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+es_simetrica(R1);  /* 2 está relacionado con 3, pero 3 no lo está con 2. */
+es_simetrica(R2);
+es_simetrica(R3);  /* 1 (resp. 2) está relacionado con 2 (resp. 3), pero 2 (resp. 3) no lo está con 1 (resp. 2) */
+es_simetrica(R4);  /* 1 (también 2) está relacionado con 3, pero 3 no está relacionado con 1 (ni con 2) */;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+es_antisimetrica(R1); /* 1 está relacionado con 2 y 2 con 1, pero 1 y 2 son elementos diferentes. */ 
+es_antisimetrica(R2); /* 1 está relacionado con 2 y 2 con 1, pero 1 y 2 son elementos diferentes. */
+es_antisimetrica(R3);
+es_antisimetrica(R4); /* 1 está relacionado con 2 y 2 con 1, pero 1 y 2 son elementos diferentes. */;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+es_transitiva(R1); /* 1 está relacionado con 2 y 2 con 3, pero 1 no está relacionado con 3. */
+es_transitiva(R2); /* 1 está relacionado con 2 y 2 con 1, pero ni 1 ni 2 están relacionados consigo mismos. */
+es_transitiva(R3); /* 1 está relacionado con 2 y 2 con 3, pero 1 no lo está con con 3. */
+es_transitiva(R4);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Ahora veamos cuáles de ellas con conectadas.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+R4;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+es_conectada(R1); /* No hay relación entre 1 y 3. */
+es_conectada(R2);
+es_conectada(R3); /* No hay relación entre 1 y 3. */
+es_conectada(R4);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Veamos como varían si las restringimos a un subconjunto de los universos anteriores. 
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+A:{1,2};
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+es_reflexiva(R1,A);
+es_reflexiva(R2,A);
+es_reflexiva(R3,A);
+es_reflexiva(R4,A); /* 3 era el único elemento que no estaba relacionado consigo mismo. */;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+es_transitiva(R1,A); /* La ausencia del par [1,3] era la causa de que no fuera transitiva. */
+es_transitiva(R2,A); 
+es_transitiva(R3,A); /* La ausencia del par [1,3] era la causa de que no fuera transitiva. */
+es_transitiva(R4,A);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+es_equivalencia(R1);
+es_equivalencia(R2);
+es_equivalencia(R3);
+es_equivalencia(R4);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Una relación de equivalencia es aquella que cumple las propiedades de reflexibilidad, simetría y transitividad.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+A:{1,2,3,4,5};
+R:identity_relation(A);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+es_equivalencia(R); /* La relación identidad, que relacciona cada elemento consigo mismo, es de equivalencia. */;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+clases_equivalencia(R);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+R1:union(R,{[1,2],[2,1],[4,5],[5,4]}); 
+es_equivalencia(R1); /* Sigue siendo de equivalencia, porque hemos añadido pares que cumplen la simetría
+                        y, unidos a los anteriores, se siguen cumpliendo las 3 propiedades. */
+clases_equivalencia(R1); /* [1,1], [1,2], [2,1] y [2,2] pertenecen a la misma clase de equivalencia, 
+                            lo mismo pasa con [4,4], [4,5], [5,4] y [5,5]. */;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Si A es un conjunto de naturales div(A) es el conjunto de pares que define
+la divisibilidad en A
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+A:{1,2,3,4,5,6};
+B:divisors(8);
+S1:div(A);
+S2:div(B);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Las relaciones de divisibilidad restringidas a números naturales (de momento olvidémonos del conjunto vacío)
+son relaciones de orden, es decir, cumplen las propiedades reflexiva, antisimétrica y transitiva.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+es_equivalencia(S1);
+es_equivalencia(S2);
+es_orden(S1);
+es_orden(S2);
+es_orden_total(S1);
+es_orden_total(S2);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Una relación es de orden total si, dados dos elementos cualquiera, uno es mayor o igual al otro u el otro es mayor
+o igual al primero. En este caso ser mayor o igual supone ser divisible por. Por ejemplo, S1 no es de orden total
+porque dados el 4 y el 6 ninguno divide al otro. 
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: comment start ]
+Podemos calcular el diagrama de Hasse.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+H1:hasse_diagram(S1);
+H2:hasse_diagram(S2);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Y después dibujarlo
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+draw_graph(H1,show_id=true);
+draw_graph(H2,show_id=true);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Como vemos S2 es una única línea simple, por eso a los conjuntos con orden total se les llama cadenas.
+En cambio, en S1 podemos comprobar que entre 4 y 6, entre 5 y 6 o entre 3 y 4 (entre otros) no hay un camino
+siguiendo las flechas.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: comment start ]
+La función Hasse lo dibuja directamente, y si introducimos un natural como argumento automáticamente devuelve los
+divisores de ese número con la divisibilidad.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+Hasse(S1);
+Hasse(36);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Si sabemos que la relación es de orden. Podemos hallar los elementos notables.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+B:divisors(30);
+R:div(B);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+universo(R);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+A:{6,15};
+minimo(A,R);  /* Un elemento menor o igual a todos los demás, que además pertenece al conjunto. */
+maximo(A,R);  /* Un elemento mayor o igual a todos los demás, que además pertenece al conjunto. */
+minimales(A,R);  /* Elementos del conjunto que no tienen en el conjunto alguno menor que ellos. */
+maximales(A,R);  /* Elementos del conjunto que no tienen en el conjunto alguno mayor que ellos. */;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+A:{3,6,15};
+minimo(A,R);   
+maximo(A,R);  
+minimales(A,R);
+maximales(A,R);
+infimo(A,R);
+supremo(A,R);
+minorantes(A,R);
+mayorantes(A,R);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Un conjunto puede o no tener máximo o mínimo, según si su supremo (mínimo de sus mayorantes, elementos del conjunto 
+en el que está contenido (B) que son mayores o iguales que todos los del conjunto (A)) o su ínfimo (máximo de sus
+minorantes, elementos de B que son menores o iguales que todos los de A) pertenecen o no al conjunto.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+minimo({15,30},R);     /* Si el ínfimo (resp. supremo) pertenece al conjunto, este será el mínimo (resp. máximo) */
+maximo({3,15,30},R);
+infimo({15,30},R);
+supremo({3,15,30},R);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+maximo({2,3},R);
+minimo({1,3},R);
+supremo({2,3},R);  /* El 6 es el menor número del universo de R que es divisible por 2 y por 3 (m.c.m.)
+                      del mismo modo el ínfimo es el (m.c.d.) */;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+En el conjunto de números reales con la relación de orden ser mayor o igual, cualquier subconjunto mayorado de números 
+reales tiene supremo y cualquiera minorado tiene ínfimo. Con la divisibilidad, posteriormente veremos ejemplos en los
+que no.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: comment start ]
+Ahora aclaremos algo sobre el conjunto vacío.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+E:{[]};
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+es_reflexiva(E);
+es_simetrica(E);  
+es_antisimetrica(E);
+es_transitiva(E);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Las funciones es_transitiva y es_antisimetrica no están bien ajustadas para este caso, pero la relación vacía en el 
+conjunto vacío sería reflexiva, simétrica, antisimétrica y transitiva. 
+Veamos lo que pasa con una relación cualquiera restringida al conjunto vacío.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+R;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+es_reflexiva(R,{});
+es_simetrica(R,{});
+es_antisimetrica(R,{});
+es_transitiva(R,{});
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Por último comprobemos el comportamiento de la relación vacía en un conjunto propio cualquiera.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+A:{1,2,3};
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+es_reflexiva(E,A);
+es_simetrica(E,A);
+es_antisimetrica(E,A);
+es_transitiva(E,A);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: section start ]
+Los subconjuntos de naturales ordenados por divisibilidad.
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: comment start ]
+Consideremos dos subconjuntos de naturales A y B, con B incluido en A
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+B:{1,2,3};
+A:{1,2,3,12,18};
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Dibujemos su diagrama de Hasse (bastante mal por cierto) 
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+Hasse(B);
+Hasse(A);
+Hasse(30);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Los elementos notables absolutos de B son los mismos en N o en A o en D(30). Esto se debe a que, en el caso de existir,
+todos ellos pertenecena B.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+minimo(B);
+maximo(B);
+minimales(B);
+maximales(B);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+minimo(B,A);
+maximo(B,A);
+minimales(B,A);
+maximales(B,A);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+minimo(B,30);
+maximo(B,30);
+minimales(B,30);
+maximales(B,30);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Pero no ocurre con los elementos notables relativos, ya que estos no tienen por que pertenecer a B.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+infimo(B);
+supremo(B);
+minorantes(B);
+mayorantes(B);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+infimo(B,A);
+supremo(B,A); 
+minorantes(B,A);
+mayorantes(B,A);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+B en A no tiene supremo porque el conjunto de mayorantes no tiene mínimo, este no tiene por que ser 6, como se aprecia
+en el ejemplo.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+mayorantes(B,{12,24,36});
+supremo(B,{12,24,36});
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+infimo(B,30);
+supremo(B,30);
+minorantes(B,30);
+mayorantes(B,30);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+minimo(A);
+maximo(A);
+minimales(A);
+maximales(A);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Si el conjunto tiene mínimo (resp. máximo), este será el único elemento de los minimales (resp. maximales), si el conjunto
+de minimales (resp. maximales) tiene más de un elemento, el conjunto no tendrá mínimo (resp. máximo).
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+infimo(A);
+supremo(A);
+minorantes(A);
+mayorantes(A);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+infimo(A,30);
+supremo(A,30); 
+minorantes(A,30);
+mayorantes(A,30);  /* Ningún número en D(30) mayora a 12 y 18 a la vez. */;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+El supremo de A es 36, que no pertenece a D(30), por lo que hacerlo de este modo da una respuesta más precisa.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+supremo(A,divisors(30));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: section start ]
+Retículos y subrretículos de números naturales.
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: comment start ]
+Dado un conjunto de números naturales
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+A:{1,2,3,5,30};
+B:{2,6,10,30};
+C:{1,2,3,4,12};
+D:divisors(30);
+E:{1,2,3};
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Podemos representar su diagrama de Hasse
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+Hasse(A);
+Hasse(B);
+Hasse(C);
+Hasse(D);
+Hasse(E);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Podemos preguntarnos si es un retículo para la divisibilidad. Retículo significa que cada par de elementos cualquiera
+tienen supremo e ínfimo.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+es_Ret(A);
+es_Ret(B);
+es_Ret(C);
+es_Ret(D);
+es_Ret(E);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Preguntarnos si es subrretículo de N. Esto quiere decir que es un subconjunto al que se pueden restringir las operaciones
+supremo e ínfimo.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+es_Sub_Ret(A);
+es_Sub_Ret(B);
+es_Sub_Ret(C);
+es_Sub_Ret(D);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Como podemos comprobar, para ser subretículo no basta con ser subconjunto y retículo, por ejemplo en A, 2 y 3 tienen
+supremo (30), pero este no coincide con su supremo en N (6).
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: comment start ]
+Un retículo es distributivo si se puede aplicar la propiedad distributiva en las operaciones de supremo e ínfimo.
+En la práctica, el pentágono (por ejemplo ({1,3,4,6,12},|) y el diamante (por ejemplo ({1,2,3,5,30},|) son los 
+retículos no distributivos más pequeños, y cualquier retículo no distributivo tiene al menos a uno de ellos como
+subretículo.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+Hasse({1,4,3,6,12});
+Hasse({1,2,3,5,30});
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+También podemos hallar los elementos que tienen complemento en el retículo distributivo
+de los divisores de un número natural, D(n).
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+complementados(30);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+complementados(12);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+O bien hallar los complementos de un elemento en un conjunto de naturales que sepamos
+que es retículo.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+complementos(10,divisors(30));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+complementos(2,{1,2,3,4,6,12});  /* El 2 no tiene complemento. */;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+complementos(3,{1,2,3,4,6,12});
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+complementos(3,{1,2,3,4,12});
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+complementos(12,{1,2,3,4,6,12});
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Tambien podemos hallar el complemento de un elemento en D(n).
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+complemento(12,120);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+complementados(120);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+complemento(36,120);
+complemento(15,120);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Un retículo complementado si todos sus elementos tienen al menos un complemento, en un retículo distributivo, un elemento
+no puede tener más de un complemento.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: comment start ]
+Función que nos dice si los divisores de un número es un retículo complementado:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+es_complementado(n):=if divisors(n)=complementados(n) then true;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+es_complementado(30);  
+es_complementado(12);  /* 2 y 6 no tienen complemento. */;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Podemos saber si un determinado retículo D(n) es Álgebra de Boole. Esto significa que es un retículo distributivo
+y complementado (únicamente). Pero hay una manera más fácil de comprobarlo.
+Los divisores de un numero son Álgebra de Boole si, y sólo si al factorizarlo todos sus divisores primos aparecen
+sólamente una vez. Los átomos (se definirán más adelante) son los factores  primos y sus complementos son el producto 
+del resto de átomos.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+factor(30);
+es_Alg_Boole(30);
+factor(60);  /* El 2 aparece 2 veces, luego (D(6),|) no es Álgebra de Boole. */
+es_Alg_Boole(60);
+factor(210);
+es_Alg_Boole(210);
+factor(2);
+es_Alg_Boole(2);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Y podemos hallar los átomos en los retículos D(n). Los átomos son los minimales entre los elementos positivos (distintos
+del mínimo, en estos casos 1). 
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+atomos(30);
+atomos(60);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Y los átomos que están por debajo de un elemento. En un álgebra de Boole, cada elemento es el producto de todos los 
+átomos a los que cubre.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+atomos(120);
+atomos(15,120);
+atomos(15);
+atomos(105,210);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+atomos(36);
+atomos(12,360);
+atomos(30);
+atomos(15,30);
+atomos(21,42);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Igual con los coátomos (elementos maximales entre los menores que el máximo). Esta función junto con la función atomos
+nos permite saber que elementos cubren a que elementos en un retículo.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+coatomos(15);
+coatomos(15,210); /* Coátomos mayores que 15. */;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+coatomos(20);
+coatomos(210);
+/* [wxMaxima: input   end   ] */
+
+
+
+/* Old versions of Maxima abort on loading files that end in a comment. */
+"Created with wxMaxima 22.04.0"$

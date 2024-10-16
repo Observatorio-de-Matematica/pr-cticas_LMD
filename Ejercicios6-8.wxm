@@ -1,0 +1,630 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 22.04.0 ] */
+/* [wxMaxima: comment start ]
+Alumno: David Cabezas Berrido
+DNI: 20079906 D
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: subsect start ]
+Carga del paquete
+   [wxMaxima: subsect end   ] */
+
+
+/* [wxMaxima: comment start ]
+Vamos a necesitar cargar el paquete de relaciones:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+load("C:/Users/dxabe/Desktop/DGIIM/Lógica y Métodos Discretos/Prácticas/relaciones/relaciones.mac")$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+También puede añadirse a la ruta y ejecutar:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+load(relaciones)$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: section start ]
+Ejercicio 6:
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: comment start ]
+Para representar diagramas de Hasse del tipo D(n), es decir, de los divisores de un número natural con la divisibilidad,
+nos basta con dar el número como argumento de la función Hasse.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+Hasse(1);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+Hasse(16);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+Hasse(24);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+Hasse(54);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+Hasse(30);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+Hasse(42);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+Hasse(36);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+Hasse(128);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+Hasse(210);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+La verdad es que algunos de ellos están regular dibujados y cuesta verlos.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: comment start ]
+Un conjunto totalmente ordenado es aquel que para cada par de dos elementos elementos cualesquiera,
+uno es mayor o igual que el otro. Por ejemplo en divisores de 12, tanto 3 como 2 dividen a 12, pero ni 3 
+divide a 2 y 2 a 3. Por lo que divisores de 12 con la divisibilidad no es un conjunto totalmente ordenado.
+Lo mismo ocurre con 6 y 4, que tampoco se dividen entre ellos.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+Hasse(12);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Para que los divisores de un número con la divisibilidad sean un conjunto totalmente ordenado o cadena,
+tiene que ocurrir que este tenga un único divisor primo. Todas las potencias de números primos naturales
+son cadenas.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+Hasse(2^12);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+Hasse(7^10);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Para que D(n) sea Álgebra de Boole, tiene que cumplir la condición de que al factorizarlo todos sus factores 
+son primos y ninguno se encuentra repetido.
+
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+factor(30);
+factor(60);
+factor(70);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+es_Alg_Boole(30);
+es_Alg_Boole(60);
+es_Alg_Boole(70);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Por ejemplo, los divisores de 30 y 70, con la divisibilidad, son Álgebra de Boole, porque todos sus divisiones son primos,
+sin embargo, el 2^2 que aparece al factorizar 60 es el culpable de que D(60) no sea un Álgebra de Boole.
+Además, los divisores primos (2, 3, 5, 7,...) son los átomos, y en cada Álgebra de Boole, el complemento de un átomo
+es el producto del resto de átomos.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: section start ]
+Ejercicio 7:
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: subsect start ]
+
+   [wxMaxima: subsect end   ] */
+
+
+/* [wxMaxima: comment start ]
+Definamos la función es_cadena, que nos diga si D(n) con la divisibilidad
+es un conjunto totalmente ordenado o cadena.
+Para ello haremos uso de la función ifactors, que devuelve una lista de tuplas formadas por los factores
+primos del número natural introducido como argumento y sus exponentes.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+ifactors(125!);
+ifactors(343);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Para que D(n) sea cadena, debe tener un único divisor primo, por lo que serán cadena los que
+tengan una factorizacion con un sólo factor primo.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+es_cadena(n):=block(X,X:setify(ifactors(n)),     /* Transformo la lista en conjunto para calcular su cardinal. */
+              if cardinality(X) = 1 then true else false);      /* Si hay un sólo elemento en el conjunto, D(n) es cadena. */;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+es_cadena(6^9);
+es_cadena(3^12);
+es_cadena(343);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Ahora definamos una función que calcule los n menores que el argumento tales que D(n) sea cadena.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+cadenas_menores(m):=for k:2 thru m-1 do
+                    if es_cadena(k) then print(k);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+cadenas_menores(201);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: subsect start ]
+
+   [wxMaxima: subsect end   ] */
+/* [wxMaxima: fold    start ] */
+/* [wxMaxima: comment start ]
+Bueno pues ya está hecha del apartado anterior. 
+Nos falta que los devuelva en forma de lista, por lo que tendremos que definirla
+de un modo un tanto diferente.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: subsect start ]
+
+   [wxMaxima: subsect end   ] */
+/* [wxMaxima: fold    start ] */
+/* [wxMaxima: comment start ]
+Bueno pues ya está hecha del apartado anterior. 
+Nos falta que los devuelva en forma de lista, por lo que tendremos que definirla
+de un modo un tanto diferente.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+lista_cadenas_menores(n):=block(X,X:makelist(i,i,n),
+                          sublist(X,es_cadena));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: subsect start ]
+
+   [wxMaxima: subsect end   ] */
+/* [wxMaxima: fold    start ] */
+/* [wxMaxima: comment start ]
+Bueno pues ya está hecha del apartado anterior. 
+Nos falta que los devuelva en forma de lista, por lo que tendremos que definirla
+de un modo un tanto diferente.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: subsect start ]
+
+   [wxMaxima: subsect end   ] */
+/* [wxMaxima: fold    start ] */
+/* [wxMaxima: comment start ]
+Bueno pues ya está hecha del apartado anterior. 
+Nos falta que los devuelva en forma de lista, por lo que tendremos que definirla
+de un modo un tanto diferente.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+lista_cadenas_menores(n):=block(X,X:makelist(i,i,n),
+                          sublist(X,es_cadena));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+lista_cadenas_menores(200);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: subsect start ]
+
+   [wxMaxima: subsect end   ] */
+/* [wxMaxima: fold    start ] */
+/* [wxMaxima: comment start ]
+Bueno pues ya está hecha del apartado anterior. 
+Nos falta que los devuelva en forma de lista, por lo que tendremos que definirla
+de un modo un tanto diferente.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: subsect start ]
+
+   [wxMaxima: subsect end   ] */
+/* [wxMaxima: fold    start ] */
+/* [wxMaxima: comment start ]
+Bueno pues ya está hecha del apartado anterior. 
+Nos falta que los devuelva en forma de lista, por lo que tendremos que definirla
+de un modo un tanto diferente.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+lista_cadenas_menores(n):=block(X,X:makelist(i,i,n),
+                          sublist(X,es_cadena));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: subsect start ]
+
+   [wxMaxima: subsect end   ] */
+/* [wxMaxima: fold    start ] */
+/* [wxMaxima: comment start ]
+Bueno pues ya está hecha del apartado anterior. 
+Nos falta que los devuelva en forma de lista, por lo que tendremos que definirla
+de un modo un tanto diferente.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: subsect start ]
+
+   [wxMaxima: subsect end   ] */
+/* [wxMaxima: fold    start ] */
+/* [wxMaxima: comment start ]
+Bueno pues ya está hecha del apartado anterior. 
+Nos falta que los devuelva en forma de lista, por lo que tendremos que definirla
+de un modo un tanto diferente.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+lista_cadenas_menores(n):=block(X,X:makelist(i,i,n),
+                          sublist(X,es_cadena));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+lista_cadenas_menores(200);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Así mejor, ocupa menos espacio.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: subsect start ]
+
+   [wxMaxima: subsect end   ] */
+/* [wxMaxima: fold    start ] */
+/* [wxMaxima: comment start ]
+Bueno pues ya está hecha del apartado anterior. 
+Nos falta que los devuelva en forma de lista, por lo que tendremos que definirla
+de un modo un tanto diferente.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: subsect start ]
+
+   [wxMaxima: subsect end   ] */
+/* [wxMaxima: fold    start ] */
+/* [wxMaxima: comment start ]
+Bueno pues ya está hecha del apartado anterior. 
+Nos falta que los devuelva en forma de lista, por lo que tendremos que definirla
+de un modo un tanto diferente.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+lista_cadenas_menores(n):=block(X,X:makelist(i,i,n),
+                          sublist(X,es_cadena));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: subsect start ]
+
+   [wxMaxima: subsect end   ] */
+/* [wxMaxima: fold    start ] */
+/* [wxMaxima: comment start ]
+Bueno pues ya está hecha del apartado anterior. 
+Nos falta que los devuelva en forma de lista, por lo que tendremos que definirla
+de un modo un tanto diferente.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: subsect start ]
+
+   [wxMaxima: subsect end   ] */
+/* [wxMaxima: fold    start ] */
+/* [wxMaxima: comment start ]
+Bueno pues ya está hecha del apartado anterior. 
+Nos falta que los devuelva en forma de lista, por lo que tendremos que definirla
+de un modo un tanto diferente.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+lista_cadenas_menores(n):=block(X,X:makelist(i,i,n),
+                          sublist(X,es_cadena));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+lista_cadenas_menores(200);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: subsect start ]
+
+   [wxMaxima: subsect end   ] */
+/* [wxMaxima: fold    start ] */
+/* [wxMaxima: comment start ]
+Bueno pues ya está hecha del apartado anterior. 
+Nos falta que los devuelva en forma de lista, por lo que tendremos que definirla
+de un modo un tanto diferente.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: subsect start ]
+
+   [wxMaxima: subsect end   ] */
+/* [wxMaxima: fold    start ] */
+/* [wxMaxima: comment start ]
+Bueno pues ya está hecha del apartado anterior. 
+Nos falta que los devuelva en forma de lista, por lo que tendremos que definirla
+de un modo un tanto diferente.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+lista_cadenas_menores(n):=block(X,X:makelist(i,i,n),
+                          sublist(X,es_cadena));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: subsect start ]
+
+   [wxMaxima: subsect end   ] */
+/* [wxMaxima: fold    start ] */
+/* [wxMaxima: comment start ]
+Bueno pues ya está hecha del apartado anterior. 
+Nos falta que los devuelva en forma de lista, por lo que tendremos que definirla
+de un modo un tanto diferente.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: subsect start ]
+
+   [wxMaxima: subsect end   ] */
+/* [wxMaxima: fold    start ] */
+/* [wxMaxima: comment start ]
+Bueno pues ya está hecha del apartado anterior. 
+Nos falta que los devuelva en forma de lista, por lo que tendremos que definirla
+de un modo un tanto diferente.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+lista_cadenas_menores(n):=block(X,X:makelist(i,i,n),
+                          sublist(X,es_cadena));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+lista_cadenas_menores(200);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Así mejor, ocupa menos espacio.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: fold    end   ] */
+
+
+/* [wxMaxima: subsect start ]
+
+   [wxMaxima: subsect end   ] */
+
+
+/* [wxMaxima: comment start ]
+Para saber si dos cadenas son isomorfas, nos basta con saber el número de elementos que tienen.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+elementos_cadena(n):=if es_cadena(n) then block(X,
+                     X:ifactors(n)[1][2]);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+elementos_cadena(6);
+elementos_cadena(3^8);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Pero una manera de contar el número de cadenas no isomorfas menores que un número n es la siguiente: 
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+cadenas_no_isomorfas_menores(n):=block([X,Y:{}],X:setify(lista_cadenas_menores(n)), /* Conjunto de números entre 1 y n tales que sus divisores son cadena. */
+                                 for k in X do Y:adjoin(elementos_cadena(k),Y),   /* Añado el número de elementos de cada cadena a otro conjunto. */
+                                 cardinality(Y)); /* El número de cadenas no isomorfas será el cardinal de Y. */;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Esta función aprovecha que cuando se añade un elemento repetido a un conjunto, este no se repite, por lo que cuando introduzca una cadena con el mismo número de 
+elementos (isomorfa) que una ya introducida previamente, el número de elementos de Y no aumentará. 
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+cadenas_no_isomorfas_menores(32);
+cadenas_no_isomorfas_menores(63);
+cadenas_no_isomorfas_menores(64);
+cadenas_no_isomorfas_menores(65);
+cadenas_no_isomorfas_menores(6987);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: section start ]
+Ejercicio 8:
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: comment start ]
+Ya existe una función que nos dice si el conjunto de divisores de un número es o no Álgebra de Boole, pero aunque
+reinventemos la rueda, puede ser interesante redefinirla para asegurnarnos de que la comprendemos bien.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: comment start ]
+El conjunto de divisiores de un número es Álgebra de Boole cuando al factorizar el número, cada divisor primo sólo
+existe una vez. Por ejemplo, divisores de 30 es Álgebra de Boole.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+factor(30);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+En cambio, divisores de 75 no es Álgebra de Boole porque se puede dividir entre 5 dos veces.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+factor(75);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Para definir nuestra función, usaremos la función ifactors una vez más.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+ifactors(375);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+es_alg_boole(n):=if n = 1 then false else /* Esta condición podría eliminarse si quisieramos considerar el Álgebra de Boole degenerada. */
+                 block([X,lo_es:true],X:ifactors(n),     /* Ser Álgebra de Boole empieza inicializado a true. */
+                 for k in X do if k[2] > 1 then lo_es:false,lo_es);   /* Si se repite algún factor, se asigna false. */;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+es_alg_boole(30);
+es_alg_boole(70);
+es_alg_boole(35);
+es_alg_boole(18);
+es_alg_boole(60);
+es_alg_boole(1);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Ahora definiremos una función que nos diga los números naturales menores que el introducido como argumento
+tales que el conjunto de sus divisores sea Álgebra de Boole.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+alg_boole_menores(n):=block([X,Y],X:makelist(i,i,n),
+                      Y:sublist(X,es_alg_boole));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+alg_boole_menores(2500);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Pues salen bastantes, la verdad. Por suerte, estudiando una de ellas ya habremos estudiado 
+todas las isomorfas a ella, así que definamos una función para calcular el número de Álgebras 
+de Boole diferentes que tendríamos que estudiar.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: comment start ]
+Al igual que en el caso de las cadenas, dos Álgebras de Boole son isomorfas si tienen el mismo número de elementos,
+y tendrán el mismo número de elementos si tienen el mismo número de átomos ya que nº elementos = 2^nºátomos,
+luego sólo nos interesa ese dato. 
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+atomos_alg_boole(n):=if es_alg_boole(n) then 
+                         cardinality(setify(ifactors(n)));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+atomos_alg_boole(210);
+atomos_alg_boole(70);
+atomos_alg_boole(6);
+atomos_alg_boole(18);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+alg_menores_no_isomorfas(n):=block(X,Y:{},X:setify(alg_boole_menores(n)),  /* Conjunto de números naturales menores que el argumento tales que el conjunto de sus divisores es Álgebra de Boole. */
+                             for k in X do Y:adjoin(atomos_alg_boole(k),Y),
+                             cardinality(Y));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Esta función trabaja de la misma forma que la función cadenas_no_isomorfas_menores, añadiendo el número de átomos de cada
+Álgebra de Boole de X a Y y aprovechando que en un conjunto no se repiten números.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+alg_menores_no_isomorfas(219);
+alg_menores_no_isomorfas(210);
+alg_menores_no_isomorfas(70);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+cardinality(setify(alg_boole_menores(2500)));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+alg_menores_no_isomorfas(2500);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Pues de las 1522 nos tocaría estudiar sólamente 5, así que nos podemos dar por satisfechos.
+   [wxMaxima: comment end   ] */
+
+
+
+/* Old versions of Maxima abort on loading files that end in a comment. */
+"Created with wxMaxima 22.04.0"$

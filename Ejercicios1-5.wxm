@@ -1,0 +1,517 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 22.04.0 ] */
+/* [wxMaxima: comment start ]
+Nombre: David Cabezas Berrido
+DNI: 20079906 D
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: section start ]
+Ejercicio 1:
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: subsect start ]
+
+   [wxMaxima: subsect end   ] */
+
+
+/* [wxMaxima: input   start ] */
+DNI:20079906;
+a:mod(DNI, 1000);
+b:mod(DNI, 100);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+a-ésima cifra decimal de π:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+fpprec:(a+2); /* Le he puesto 2 unidades más, uno porque que la parte entera la tiene en cuenta y el otro para evitar redondeos. */;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+bfloat(π);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Debo coger la antepenúltima cifra, luego la solución es 3.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: comment start ]
+b-ésima cifra decimal de π:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+fpprec:(b+2);  /* Volvemos a ajustar la precision del bfloat. */;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+bfloat(π);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+La solución es 2, esta vez lo he tenido más facil.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: subsect start ]
+
+   [wxMaxima: subsect end   ] */
+
+
+/* [wxMaxima: comment start ]
+Divisores naturales de a:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+divisors(a);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Suma de los divisores de a:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+divsum(a);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: subsect start ]
+
+   [wxMaxima: subsect end   ] */
+
+
+/* [wxMaxima: comment start ]
+Mayor número primo menor que a:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+prev_prime(a);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Menor número primo mayor que a:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+next_prime(a);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Suma de primos menores que a:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: comment start ]
+Defino una función que devuelva la suma de números primos hasta el argumento:
+block permite usar k y s como variables locales, además inicializo s a 0, recorro el bucle de 2 al argumento (1 no se considera primo)
+y voy sumando los que sean primos (la función frimep() da como salida true. Finalmente se devuelve la suma.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+primesum(n):=block([k,s:0], for k:2 thru n do if primep(k) then s:s+k,print(s));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Suma de primos hasta a:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+primesum(a);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Si queremos solamente los primos menores que a podemos introducir lo siguiente, aunque en este caso el resultado
+no cambia porque a no es primo.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+primesum(a-1);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Otra forma de definir la función es:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+suma_primos_hasta(n):=block([X,Y,i,s:0],
+    X:setify(makelist(i,i,n)),
+    Y:subset(X,primep),
+    for k in Y do s:s+k, print(s));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+suma_primos_hasta(a-1);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: subsect start ]
+
+   [wxMaxima: subsect end   ] */
+
+
+/* [wxMaxima: comment start ]
+Número de ceros en los que acaba (1000+a)! :
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+x:(1000+a)!;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Para ver en cuántos 0 acaba x, debemos averiguar cuántas veces es divisible por 10, es decir, cuántas veces es divisible por 2 y por 5 a la vez.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: comment start ]
+factor(x) nos devolvería la factorización, pero para poder trabajar con el resultado es mejor utilizar ifactors(x), que nos devolverá una
+lista de pares formados por cada factor primo y el número de veces que aparece, es decir, su exponente.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+F:ifactors(x);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+De esta forma ahora podemos trabajar con primer y tercer elementos de la lista.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+dos:F[1];
+cinco:F[3];
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+dos_exp:dos[2];        /* Ahora nos referimos al segundo elemento, el exponente. */
+cinco_exp:cinco[2];
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+min(dos_exp,cinco_exp);    /* Será divisible por 10 un número de veces igual al menor de los exponentes entre el del 2 y el del 5. */;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+(1000+a)! es termina en 475 ceros.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: section start ]
+Ejercicio 2:
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: comment start ]
+Un número n es perfecto si la suma de sus divisores distintos de él es igual a n.
+Para saber si un número es perfecto podemos definir una función que nos lo diga.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+perfectp(n):=if n=(divsum(n)-n) then true else false;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+perfectp(6);
+perfectp(12);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Ahora calcularemos los números perfectos menores que n, es decir, desde 6 hasta n.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+perfectos_menores_que(n):=block([X,Y,i],
+    X:setify(makelist(i,i,6,n)),            /* Conjunto de naturales entre 6 y n. */
+    Y:subset(X,perfectp));                  /* Subconjunto de los que son perfectos. */;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Ahora los perfectos menores que 10000:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+perfectos_menores_que(10000);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Aquí los tenemos.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: section start ]
+Ejercicio 3:
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: comment start ]
+El monje francés Marin Mersenne afirmó, en 1644, que los números de la forma 2^n − 1 son primos para los 
+valores n = 2, 3, 5, 7, 13, 17, 19, 31, 67, 127 y 257 y no lo son para el resto de números menores que 257.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+for k:1 thru 257 do if primep(2^k-1) then print(k);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+El señor Mersenne se equivocó, puesto que con el 67 y el 257 no se cumple, y con 61, 89 y 107 sí.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: comment start ]
+Los números de la forma 2^p - 1 no son primos para todo número primo p, 67 sirve como ejemplo.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+primep(67);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+primep(2^67 -1);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: section start ]
+Ejercicio 4:
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: comment start ]
+La conjetura de Goldbach afirma que todo número natural par mayor que 3 puede expresarse
+como suma de dos números primos, expresemos (1000 + 2a) como suma de dos primos.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+x:1000 + 2*a;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+integer_partitions(x,2);              /* Lista de particiones de longitud 2. */;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+El pobre Maxima no da a basto pero podemos intentarlo directamente con las funciones goldbach y goldbachtotal del segundo apartado.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+goldbachtotal(n):=block([X,Y,Resultado],         
+X:integer_partitions(n,2),           /* Diferentes combinaciones de expresar n como suma de 2 números. */
+ambos_primos(d):=every(primep,d),    /* Defino una función que devuelva true cuando los dos números de la pareja sean primos. */
+Y:subset(X,ambos_primos));           /* Elijo los elementos de X que cumplan la condición definida. */;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+goldbach(n):=first(goldbachtotal(n));    /* Ahora me quedo sólo con una pareja, por ejemplo la primera. */;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+goldbach(x);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+goldbachtotal(x);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Ahí lo tenemos, ahora queda la que dice el número de particiones en dos primos, que podemos hacer con la función carinality.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+dgoldbach(n):=cardinality(goldbachtotal(n));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+dgoldbach(x);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: section start ]
+Ejercicio 5:
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: comment start ]
+Definamos la función de Ackerman:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+ackerman(m,n):=if m=0 then n+1
+               else if n=0 then ackerman(m-1,1)
+               else ackerman(m-1,ackerman(m,n-1));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+ackerman(3,1);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+ackerman(2,9);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+ackerman(3,5);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+ackerman(4,2);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Parece que no, probemos guardando en memoria.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+ack[m,n]:=if m=0 then n+1
+          else if n=0 then ack[m-1,1]
+          else ack[m-1,ack[m,n-1]];
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+ack[4,0];
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+ack[4,1];
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Definitivamente no. Pero por suerte wikipedia sí,
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: comment start ]
+               n
+       0   1    2   3   4     n
+
+  0|   1   2     3   4   5    n + 1
+  1|   2   3     4   5   6    n + 2
+m 2|   3   5     7   9   11   2n + 3
+  3|   5   13    29  61  125  8* 2^n-3
+  4|   13  65533 ...          2^2^...^2 - 3  
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: comment start ]
+ackerman(4,0) = 13 = 2^4 - 3 = 2^2^2 - 3
+ackerman(4,1) = 65533 = 2^16 -3 = 2^2^2^2 - 3
+De aquí podemos deducir
+ackerman(4,n) = 2^2^...^2 - 3   donde hay n+3 doses.
+ackerman(4,2) = 2^2^16 -3 = 2^2^2^2^2 - 3
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+2^16;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+2^65536 - 3;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Aquí lo tenemos, ahora intentemos implementarlo en la función de Arckerman.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+acker[m,n]:=if m=0 then n+1
+            else if n=0 then acker[m-1, 1]    /* Hasta aquí igual. */
+            else if m=1 then 2+n              /* Escribimos una fórmula especifica para cada caso e la tabla. */
+            else if m=2 then 2*n + 3
+            else if m=3 then 8* 2^n -3 
+            else if m=4 then block(a: 2, for i: 1 thru n+2 do a:2^a, a-3)  /* Inicializo a en 2 e itero n+2 veces, por lo que habrá n+3 doses. */
+            else acker[m-1, acker[m, n-1]];   /* Para casos con m más alta sería así, pero maxima no va a ser capaz de calcularlos. */
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+El momento de la verdad...
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+acker[4,2];
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Funciona, pero...
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+acker[4,3];
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Tan sólo hemos aumentado la capacidad para un valor de m, pero teniendo en cuenta el crecimiento de esta función, podemos darnos por satisfechos.
+   [wxMaxima: comment end   ] */
+
+
+
+/* Old versions of Maxima abort on loading files that end in a comment. */
+"Created with wxMaxima 22.04.0"$

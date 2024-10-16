@@ -1,0 +1,1796 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 22.04.0 ] */
+/* [wxMaxima: comment start ]
+Alumno: David Cabezas Berrido
+DNI: 20079906D
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: comment start ]
+¡Bienvenido a wxMaxima :)! En este tutorial introductorio aprenderemos
+lo (muy) básico de wxMaxima y Maxima. Maxima es un Sistema de Álgebra por 
+Computador ("Computar Algebra System", CAS, por sus siglas en inglés) 
+similar a sistemas como Mathematica, Maple y otros. Maxima, sin embargo, 
+es una aplicación en línea de comandos, lo cual dificulta un poco su uso
+si no se está familizarizado con ello. Para hacer nuestro uso de Maxima 
+más simple y amigable, contamos con wxMaxima, que es una Interfaz Gráfica 
+de Usuario ("Graphical User Interface", GUI, por sus siglas en inglés). 
+(Para consultar las versiones de Maxima y wxMaxima que estamos usando, 
+podemos seguir la ruta "Ayuda --> Acerca de" en el menú superior).
+
+Maxima, además, es Software Libre (su codigo fuente se distribuye bajo
+la licencia GPL - "General Public License").  
+
+¡Comencemos con algunos cálculos simples! Abajo aparece una celda (cell)
+de entrada (input) con una simple suma. Colocamos el cursor en ella y
+presionamos SHIFT-ENTER para evaluarla.
+
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: section start ]
+Operaciones con números.
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: subsect start ]
+Aritmética básica.
+   [wxMaxima: subsect end   ] */
+
+
+/* [wxMaxima: input   start ] */
+1+1;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Si no obtuvimos ningún error, Maxima está configurado apropiadamente.
+Si se produjo algún error, deberíamos examinar la configuración de wxMaxima
+o visitar la página web de wxMaxima (http://wxmaxima.sourceforge.net/)
+para buscar instrucciones sobre cómo configurar wxMaxima y Maxima adecuadamente.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: comment start ]
+NOTA: Para obtener información acerca de alguna función en Maxima, podemos 
+seleccionarla con el curso y presionar fn + f1. De esta manera se mostrará 
+inmediatamente la información sobre la función correspondiente disponible en
+el menú Ayuda de Maxima. También podemos acceder a dicha información desde 
+el menú superior, siguiendo "Ayuda --> Ayuda de Maxima --> Index (e introduciendo
+en la casilla la función u orden en cuestión)".
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: comment start ]
+Para las operaciones aritméticas y funciones básicas los símbolos empleados en 
+wxMaxima son los siguientes:
+
+suma                           +
+
+diferencia                     -
+
+producto                       * (también puede usarse . precedido y pospuesto de un espacio)
+
+cociente                       /
+
+potencia                       ^ (también puede usarse **)
+
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+4+7;
+5*4;
+5+(2*4+6)/7;
+2+5/11;
+5+2*4+6/7;
+128/234;
+a/2+3*a/5;
+5**(1/2);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: subsect start ]
+Constantes.
+   [wxMaxima: subsect end   ] */
+
+
+/* [wxMaxima: comment start ]
+El número π
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+%pi;
+float(%pi);
+bfloat(%pi);     /* Precisión regulable, se verá posteriormente. */;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+También puede introducirse con ESC pi ESC, si el frontend y la versión de lisp soporta Unicode
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+π;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+La base de logaritmos neperianos e
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+%e;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+La unidad imaginaria i
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+%i;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+La constante de Euler
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+%phi;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Uso de salidas anteriores
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+%o8;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+%o5+%o6;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: subsect start ]
+Aproximaciones decimales.
+   [wxMaxima: subsect end   ] */
+
+
+/* [wxMaxima: input   start ] */
+fpprec:4;   /* Regula la precisión de bfloat (el número de cifras que se muestran) */;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+float(%pi);
+bfloat(%pi);
+float(%phi);
+bfloat(%phi);
+float(%e);
+bfloat(%e);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+fpprec:50;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+bfloat(π); 
+bfloat(%phi);  /* No funcionan esc phi esc ni esc e esc */
+bfloat(%e);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+sqrt(3* %phi);      /* sqrt para raíces cuadradas */
+float(%);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+sqrt(2 * %pi);
+float(%);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+1/2+1/3;    /* Si todos los números son enteros, no los expresa como float a no ser que se lo pidamos expresamente.*/
+float(%);      /* Redondea al alza. */;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+1.0/2+1/3;   /* Si al menos un número es float (1.0), expresa el resultado como float, redondea por truncamiento. */;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+numer:true$       /* De esta forma le pedimos expresamente a Maxima que nos lo exprese con coma flotante. */;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+1/2+1/3;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+numer:false$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+1/2+1/3;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+float(sqrt(2));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+fpprec:100;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+float(%pi);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+bfloat(%pi);    /* Si el número es muy largo, Maxima no lo muestra entero, a continuación trataremos esto más a fondo. */;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: subsect start ]
+Presentaciones abreviadas y extensas.
+   [wxMaxima: subsect end   ] */
+
+
+/* [wxMaxima: comment start ]
+Cuando el resultado de un cálculo es largo, Maxima omitirá algunos de sus
+dígitos, informando de cuántos están siendo omitidos:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+2^1000;
+3^1000;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Si estamos interesados en visualizar la cifra completa, podemos usar
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+set_display('ascii);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+2^1000;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+3^1000;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Como vemos, de esta manera se muestra la cifra completa 'partiéndola' 
+mediante el símbolo \. Para evitar esto, podemos usar
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+set_display('none);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+2^1000;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+3^1000;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Para volver al modo en que Maxima omite dígitos de cifras largas, usamos
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+set_display('xml);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+2^1000;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+3^1000;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: subsect start ]
+Funciones usuales.
+   [wxMaxima: subsect end   ] */
+
+
+/* [wxMaxima: comment start ]
+La orden para saber si un entero es primo es la función "primep" que devuelve true (verdadero) o false (falso).
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+primep(547);
+primep(1991);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+  Para descomponer un entero en producto de factores primos, utilizamos la función "factor"
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+factor(320);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+ifactors nos da también la factorización del número, pero lo hace en forma de lista de duplas formadas por el factor primo
+y su exponente, esto puede ser más útil para trabajar posteriormente con los factores de un número.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+ifactors(320);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Los divisores naturales de un entero se obtienen con la función "divisors" (observa que el resultado es un conjunto).
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+divisors(500);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+El cociente y el resto de la división euclídea de dos enteros se obtienen con las funciones "quotient" y "mod".
+La función "divide" nos proporciona los dos.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+quotient(56,9);
+mod(56,9);
+divide(56,9);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+divide(2^100,17);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+La variable "gcd" (greatest common divisor) nos indica el algoritmo utilizado en el cálculo del 
+máximo común divisor de dos enteros
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+gcd;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+El máximo común divisor de dos enteros se obtiene con la función "gcd"
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+gcd(250,130);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+El mínimo común múltiplo de dos o mas enteros se obtiene con la función "lcm" (least common multiple)
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+lcm(12,15);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Si tenemos dos enteros a y b mediante "gcdex" podemos obtener los u y v de la relación de Bézout au+bv=d 
+y su máximo común divisor d, esta relación dice que dados dos enteros diferentes de 0, 
+existen dos enteros que cumplen la igualdad de arriba.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+gcdex(-12, 15);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+3 es su máximo común divisor y -12*1+15*1=3, veamos otro ejemplo
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+gcdex(-18,48);
+gcd(-18,48);
+3*(-18)+48;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+En este caso, gcdex nos dice que el máximo común divisor es -6, pero lo correcto sería dar el 6 y que u y v
+fueran -3 y -1 respectivamente.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+(-18)*(-3)+48*(-1);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Si n es un número natural n! se calcula con la función postfija ! o la prefija factorial
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+5!;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+factorial (5);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+32!;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+La raíz cuadrada se obtiene con la función "sqrt"
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+sqrt(4);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Raíces con otros índices se obtienen con la función "^"
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+625^(1/4);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+625^(1/3)*2^(1/3);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+%e^2;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+exp(2);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+exp(2),numer;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+log(20);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+log(20),numer;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+¡ojo! ln no funciona
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+ln(20), numer;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Definamos nuevas funciones logaritmo
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+log2(x):=log(x)/log(2);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+ln(x):=log(x)/log(%e);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+log2(64),numer;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+ln(%e^2);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+De hecho, podemos definir una que sirva para cualquier base.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+logaritmo(base,argumento):=log(argumento)/log(base);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+logaritmo(2,7),numer;
+logaritmo(%e,20),numer;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Funciones trigonométricas y circulares (las recíprocas de las trigonométricas
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+sin(%pi/4);
+cos(%pi/2);
+tan(%pi/4);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+asin(1/2);
+acos(1/sqrt(2));
+atan(0);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+sec(0);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Números combinatorios, aunque serán vistos más a fondo en futuras sesiones.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+binomial(3,2);
+binomial(4,3);
+binomial(10,4);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+random(x) si x es natural devuelve un número natural menor o igual que x-1
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+random(100);
+random(100);
+random(10);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+random(2.0);         /* Si x es float, devuelve float < x */
+random(4.2);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+random(6)+1;   /* Un dado de 6 caras. */
+random(8)+1;   /* Otro de 8 caras. */;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: subsect start ]
+Aritmética modular
+   [wxMaxima: subsect end   ] */
+
+
+/* [wxMaxima: input   start ] */
+modulus:5;   /* Ahora estamos Z5 (el 0 y el 5 son el mismo número) */;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+4+1;
+4+7;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+rat(4+1);
+rat(4+7);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+modulus:false;  /* Ya no. */;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+rat(4+7);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: subsect start ]
+Números complejos
+   [wxMaxima: subsect end   ] */
+
+
+/* [wxMaxima: input   start ] */
+sqrt(-2);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+(2+3*%i)+(3-%i);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+(2+3*%i)/(1-%i);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+La forma algebraica de un número complejo se obtiene con la orden (función) "rectform".
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+rectform((2+3*%i)/(1-%i));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+rectform(sqrt(2)*exp((%i*%pi/4)));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Las partes real e imaginaria de un complejo se obtienen con
+las funciones "realpart" e "imagpart"
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+realpart(2-%i);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+imagpart(2-%i);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+El módulo de un número complejo se obtiene con la función "abs" y el 
+argumento con "carg"
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+abs(1+3*%i);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+carg(1+3*%i);
+carg(1+3*%i),numer;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+exp(%i*%pi/4);  /* Para pasar de forma exponencial a polinómica. */;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+demoivre(1+sqrt(3)*%i); /* Expresa la forma polar con funciones trigonométricas, abajo se muestra un ejemplo. */;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+demoivre:true;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+exp(2+3*%i);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+demoivre:false;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+exp(2+3*%i);
+demoivre(%);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+(1+2*%i)^2;
+ratsimp(%);   /* Simplifica la expresión dada como argumento. */;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+El módulo y el argumento de un número complejo se obtienen con 
+las funciones "cabs" y "carg".
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+cabs(1+3*%i);        /* Similar a abs. */
+cabs(1+3*%i),numer;
+carg(1+3*%i);
+carg(1+3*%i),numer;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+ La forma exponencial de un número complejo se obtiene con la función "polarform".
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+polarform(1+3*%i);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+polarform(1+%i);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+polarform(1+sqrt(3)*%i);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: section start ]
+Conjuntos.
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: subsect start ]
+Definiendo conjuntos.
+   [wxMaxima: subsect end   ] */
+
+
+/* [wxMaxima: comment start ]
+En Maxima podemos definir conjuntos usando llaves ({}) o  través de la función set:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+A:{1,2,3,4,5,6,7,8,9}$
+B:set(1,2,3,4,5,6,7,8,9)$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Observa estos tres ejemplos:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+A:{1,2,3,4,5,6,7,8,9}$
+B:{rojo,naranja,amarillo,verde,azul,indigo,violeta}$
+C:{1,2,3,4,7,6,5,8,9,0,9,8,7,6,5,4,3,2,1}$
+A;
+B;
+C;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Podemos comprobar que al introducir un elemento que ya está en el conjunto, no pasa absolutamente nada.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+(x:a/c + b/c, y:a/c + b/c, z:(a + b)/c)$
+x;y;z;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Hemos utlizado un bloque para definir tres expresiones. Las expresiones x e y
+son idénticas formalmente. La expresión z es equivalente a x e y pero no idéntica formalmente.
+Definamos un conjunto con las tres expresiones y veamos los resultados:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+{x,y,z};
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Maxima tiene una función para saber si un elemento pertenece a un conjunto o no:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+elementp(5,A);
+elementp(11,A);
+not(elementp(11,A));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Es decir, 5 es un elemento de A (5∈A es verdad), 11 no pertenece a A (11∈A es falso), 
+y por tanto su negación es verdad.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: comment start ]
+Definamos un par de funciones sobre conjuntos
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+pares(S):=(E:{}, for e in S do (if evenp(e) then E:adjoin(e,E)),E)$   /* adjoin añade el primer argumento (elemento) */
+impares(S):=(O:{}, for e in S do (if oddp(e) then O:adjoin(e,O)),O)$  /*  al segundo argumento (conjunto) */
+pares(A);
+impares(A);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: subsect start ]
+Relaciones y operaciones.
+   [wxMaxima: subsect end   ] */
+
+
+/* [wxMaxima: comment start ]
+Definamos cuatro conjuntos
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+S:{1,2,3,4,5,6,7,8,9}$
+A:pares(S)$
+B:impares(S)$
+C:S$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+¿Qué conjuntos son iguales?
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+is(A=B);
+is(C=S);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+A es el conjunto de los pares de S y B el de los impares. C es el conjunto S
+and therefore equal (y por lo tanto .
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+is(not A=B);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Esto es lo mismo que "is A≠B".
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+is(not C=S);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Esto es falso porque C y S son iguales. Dos conjuntos pueden tener el mismo número 
+de elementos (cardinal) o no:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+D:{11,12,13,14,15,16,17,18,19}$
+is(D=S);
+is(cardinality(D)=cardinality(S));
+is(cardinality(D)=cardinality(A));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Los conjuntos D y S pueden tener el mismo número de elementos, es decir, existe una aplicación biyectiva (one-to-one) 
+aunque sean distintos o tengan elementos en común.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+onetoone(A,B):=is(cardinality(A)=cardinality(B))$
+onetoone(D,S);
+onetoone(D,A);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+La relación de inclusión nos dice cuando un conjunto está incluido en otro
+of another set.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+subsetp(A,S);
+subsetp(D,S);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Esto es equivalente a los enunciados A contenido en S y D contenido en S.
+Dos conjuntos son disjuntos si no tienen elementos en común.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+S;
+D;
+disjointp(S,D);
+S;
+A;
+B;
+disjointp(S,A);
+disjointp(S,B);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Maxima nota el conjunto vacío como {} y la función que lo detecta como "emptyp":
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+A:{"Hola"}$
+B:{}$
+emptyp(A);
+emptyp(B);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+subsetp(S,{});
+subsetp({},S);
+subsetp(S,S);
+subsetp({},{});
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+emptyp(∅);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+∅:{};
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+emptyp(∅);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+No set is a subset of the null set except the null set itself. A set is a subset of itself. The
+null set is a subset of every set.
+Ningún conjunto es subconjunto excepto el conjunto vacío. Un conjunto siempre es subconjunto de sí mismo,
+el conjunto vacío es subconjunto de todos los conjuntos.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: comment start ]
+Las operaciones de unión e intersección de conjuntos se definen como:
+A∪B≜{x∈U| x∈A or x∈B}
+A&B={x pertenecientes a U| x pertenece a A y x pertenece a B}    (& denota intersección)
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+A:{1,2,3,4,5,6,7,8,9,10}$
+B:{11,12,13,14,15,16,17,18,19,20}$
+union(A,B);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+A:{1,2,3,4,5,6,7,8,9,10}$
+B:{6,7,8,9,10,11,12,13,14,15}$
+intersection(A,B);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+la diferencia de dos conjuntos se define como:
+A-B={x pertenecientes a U| x pertenece a A and x no pertenece a B}
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+setdifference(A,B);
+setdifference(A,A);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+La diferencia la podemos utilizar para definir el complemento de un conjunto
+con respecto a un conjunto universo U.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+U:{1,2,3,4,5,6,7,8,9,10,11,12}$
+A:{4,5,6,7}$
+complement(U,A):=setdifference(U,A)$
+complement(U,A);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+El producto cartesiano de dos conjuntos se puede definir como:
+A×B={(x,y)| x pertenece a A y y pertenece B}
+Es decir, A×B es un conjunto de pares ordenados.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+A:{1,2,3,4}$
+B:{5,6,7,8}$
+cartesian_product(A,B);
+cartesian_product(A,A);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+El conjunto potencia o conjunto de las partes de un conjunto
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+powerset(A);
+powerset(B);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: subsect start ]
+Creando y partiendo conjuntos.
+   [wxMaxima: subsect end   ] */
+
+
+/* [wxMaxima: comment start ]
+Hay varios métodos para crear conjuntos. Utilizar funciones de Maxima que devuelvan conjuntos:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+divisors(1024);
+divisors(941);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Mediante la función "makeset(expr,x,s)".
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+S:{[1,2],[3,4],[5,6],[7,8]};
+makeset([n/d],[n,d],S);  /* Divide el primer elemento de cada dupla entre el segundo, esos serán los nuevos elementos de S */;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Debemos fijarnos en que S no es un conjunto de fracciones, sino de listas de una fracción cada una.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: comment start ]
+The makeset(expr,x,s) function requires an expression as a list that is to be formed in
+the resulting set. Here expr is the list object [n/d]. The argument x is a list of the
+variables used in the expr argument and forms a pattern for the set argument s which is
+a set of list objects with a structure that matches the pattern. Here the pattern is [n,d]
+and S is defined as a set of list objects having values matching this pattern. The result
+is a set of list objects that have the value specified by expr. In this case a set of four
+fractions were instantiated as list objects.
+Another way to create a set from another set is to use the subset function:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: comment start ]
+La función makeset requiere una expression y una lista que será formada en el conjunto resultante.
+En este caso, la expresión es la lista [n/d]. El argumentoo x es una lista de las variables usadas en la expresión
+y forma un patrón para el conjunto argumento x, que es un conjunto de listas con una esctructura que encaja con el
+patrón. Aquí es patrón es [n,d] y todas las listas de S lo cumplen (tienen dos elementos y el seguno no es 0). El
+resultado es un conjunto de listas que tienen el valor especificado por la expresión. En este caso, un conjunto de
+cuatro fracciones han sido instanciadas en listas.
+Otra forma de crear un conjunto desdo otro es la orden subset:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: comment start ]
+Podemos seleccionar el subconjunto de elementos de un conjunto que verifican una propiedad booleana (predicado)
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+A:{1,2,3,4,5,6,7,8,9,10,11,12};
+subset(A,primep);     /* Elementos de A que sean primos */;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+f(x):=is(x>3);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+subset(A,f);          /* Elementos de A mayores que 3 */;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+S:{1,2,3,4,5,6,7,8,9,10}$
+subset(S,evenp);          /* Elementos de S que sean pares */
+subset(S,oddp);           /* Elementos de S que sean impares */;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Partition_set transforma el conjunto en una lista de dos conjuntos, unos cuyos cumplen la condición y otro con los que no.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+partition_set(S,evenp);
+partition_set(S,oddp);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: subsect start ]
+Iteración con conjuntos
+   [wxMaxima: subsect end   ] */
+
+
+/* [wxMaxima: comment start ]
+Hay dos formas de utilizar los conjuntos para hacer iteraciones. La función "map":
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+f(x):=x^2$
+M:map(f,S);  
+S;               /* No altera S */;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+La función f(x) es el cuadrado de x. La orden map(f,S) aplica a cada elemento de S la función f.
+
+El segundo método de iteración utiliza la orden "for x in s do expr":
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+for s in S do print (concat(s," ",f(s)));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Esta orden realiza una iteración con cada elemento de s, se verá más detalladamente el bucle for en el apartado
+estructuras de control.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: section start ]
+Listas.
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: comment start ]
+Muy frecuentemente, trabajaremos con listas. En Maxima podemos definir listas de 
+diversas formas. Una es a través del uso de corchetes ([]):
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+L:[1,2,3,4,5];
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Nota que L es una lista y que, pese a su aparente similitud, es una estructura 
+distinta que A, que es un conjunto. Por defecto, en un conjunto 'no hay orden', 
+en una lista sí. Observemos lo siguiente:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+A:{1,2,3,4,5};
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+C:{2,4,3,1,5};
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+is(A=C);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+is(A=L);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+El orden importa en listas:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+M:[2,4,3,1,5];
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+is(L=M);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Podemos llamar a los elementos de una lista:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+L[1];
+M[2];
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+También podemos utilizar las órdenes first, second, third, fourth,...
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+first(L);
+second(M);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Con la diferencia de que estas órdenes también se pueden aplicar a conjuntos.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+X:setify(makelist(10*j,j,1,10));   /* Se explicará a continuación */;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+first(X);
+sixth(X);
+ninth(X);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Pero debemos tener cuidado ya que Maxima no atiende al orden de los conjuntos, normalmente sólo usamos first cuando 
+necesitamos un elemento del conjunto.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: comment start ]
+También podemos definir listas usando la orden makelist:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+makelist(i,i,1,30);  /* Lista de naturales del 1 al 30 */;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+makelist(2^k,k,0,20);   /* Lista de potencias de 2 del 0 al 20 */;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Podemos convertir listas en conjuntos con la orden setify, y también transformar 
+conjuntos en listas usando listify:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+setify(L);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+listify(A);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+is(A=L);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+is(A=setify(L));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Esto puede ser útil para para utilizar funciones propias de conjuntos en listas y viceversa.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+L;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+X:setify(L);   /* Transformo la lista en conjunto */;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+Y:subset(X,evenp); /* Filtro los elementos */;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+M:listify(Y);    /* Vuelvo a transformarlos en lista. */;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+También se puede aplicar la estructura for...in...do a una lista.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+for k in L do print(k*2);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: section start ]
+Estructuras de control.
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: comment start ]
+Es conveniente que mires en el manual el operador "do"
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: comment start ]
+"thru":
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+for i:1 thru 10 do display(i);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+for i:1 thru 10 do print(i);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Por defecto, 'el paso' (esto es, el valor del contador en el bucle for), es 1. 
+Podemos variar 'el paso' ('step' en inglés) como sigue:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+for i:1 thru 10 step 4 do display(i);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Con 'while', un cuerpo de operaciones se itera 'mientras' una condición 
+(aritmética, booleana,...) sea cierta.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+s:0$
+for i:1 while i<=3 do s:s+i;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+s;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+for n:0 while primep(2^n+1)=true do print(n);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+"unless", que hace justo lo contrario que while (detiene el bucle cuando se cumple la condición),
+usemoslo para hacer una función que imprima los números naturales desde el argumento hasta el menor
+número primo mayor que el argumento.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+numeros_hasta_siguiente_primo(n):=for k:n+1 unless primep(k)=true do print(k);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+numeros_hasta_siguiente_primo(7);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+numeros_hasta_siguiente_primo(628);   /* El 631 es primo */;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Podemos condicionar:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+b0:1;
+b1:2;
+B[n]:=if n=0 then b0 else if n>1 then 2*B[n-1]+B[n-2] else b1;  /* Es una función recursiva, se verán con más detalle en futuras sesiones */;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+B[0];
+B[1];
+B[2];
+B[3];
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Definamos una función que nos diga si un número tiene 4 factores primos.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+tiene_4_factores(n):=if cardinality(setify(ifactors(n)))=4 then true else false;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+tiene_4_factores(12);
+tiene_4_factores(330);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+"block", permite declarar variables locales, que se asignarán posteriormente:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: comment start ]
+Función que devuelve todos los primos entre dos números:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+Prime(n,m):=block([X,Y,i],   /* Se declaran las variables locales a utilizar */
+X:setify(makelist(i,i,n,m)), /* Se asigna a X el conjunto de números entre los dos introducidos como argumento */
+Y:subset(X,primep))$         /* Se se asigna a Y el subconjunto de X que comple la condición de ser primo */;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+Prime(15,27);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Nótese el uso de variables *locales* en la función Prime. Variables locales son aquellas a las que 
+se le otorga un ámbito local. Tales variables sólo pueden accederse desde la función o bloque de 
+instrucciones donde se declaran. Se contraponen a las variables *globales*, accesible en todos los 
+ámbitos de un programa informático. Una variable global puede ser modificada en cualquier parte del 
+programa y cualquier parte del programa depende de ella. Es por ello que han de ser utilizadas con cuidado,
+dado el riesgo que conlleva su uso al tener un potencial ilimitado para crear dependencias.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: comment start ]
+Ahora una función que devuelve los no primos entre dos números, esta incluso cuenta con una comprobación que,
+a diferencia de la anterior, permite que funcione aun introduciendo el mayor de los dos como primer arguemnto.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+Noprime(m,n):=block([X,Y,i],
+if is(m<=n)=true then m:m else (aux:m,m:n,n:aux),   /* Si el primero es mayor, se intercambian los papeles. */
+X:setify(makelist(i,i,m,n)),     /* Se calculan los primos, como hemos visto antes */
+Y:subset(X,primep),
+Z:setdifference(X,Y),        /* Se asigna a un nuevo conjunto Z la diferencia entre X (todos) e Y (primos) */
+return(Z)                 /* Se devuelve Z */
+)$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+Noprime(15,27);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: section start ]
+Asignaciones y definiciones.
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: comment start ]
+Asignemos a la variable 'a' el valor 'b':
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+a:b;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Si ahora asignamos a 'b' el  valor 7,
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+b:7;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Observamos que al preguntar a Maxima por la variable 'a', ésta no ha 
+modificado su valor:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+a;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Esto es, no ha tomado el valor 7 que asignamos a 'b'.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: comment start ]
+Podemos utilizar dos comillas (no las comillas dobles) para obligar a reevaluar.
+Pero no se guarda en memoria esta reevaluación.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+''a;
+a;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Si asignamos a una nueva variable 'c' una expresión involucrando a 'a' y 'b',
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+c:2*a+b;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Notamos cómo Maxima deja 'a' intacta. Concluimos que la asignación en Maxima es
+ansiosa. No ocurre así con la definición de funciones.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: comment start ]
+Observemos la diferencia entre asignación y definición. La siguiente es una 
+asignación a la variable 'a' de un número natural aleatorio entre 0 y 10.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+a:random(11);  /* a como variable */;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+a;
+a;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+''a;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Lo siguiente define una función sin argumento. Se trata de una función 
+que asigna un número natural aleatorio entre 0 y 10.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+a():=random(11);    /* a como función */;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+a();
+a();
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Aunque ya hemos hecho algunos ejemplo previamente, es conveniente dominar la definición de funciones,
+como hemos podido comprobar, no es necesario poner el tipo de argumento (si ponemos x, puede leer un natural,
+un real, una función booleana, conjunto, lista,...
+Además, es conveniente utilizar "block" para fijar variables locales y así el código de la función sea más fácil de leer.
+En la próxima práctia profundizaremos más en las funciones recursivas(como la que hemos definido antes).
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+b0:1$
+b1:2$
+B[n]:=if n=0 then b0 else if n>1 then 2*B[n-1]+B[n-2] else b1;  /* Es una función recursiva, se verán con más detalle en futuras sesiones */;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+B[300];
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Si nos fijamos, esta función usa corchetes en lugar de paréntesis, esto es porque pide a Maxima que almacene en memoria,
+de otra forma para calcular B(10) tendiría que calcular B(9) y B(8), y para B(9) calcularía de nuevo B(8) y B(7), sin darse
+cuenta de que ya lo había calculado, etc.
+El caso es que las definiciones de funciones recursivas que no usan memoria suelen ser bastante ineficaces.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+b0:1;
+b1:2;
+B(n):=if n=0 then b0 else if n>1 then 2*B(n-1)+B(n-2) else b1;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+B(100);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Como podemos comprobar, la función que utilizaba el guardado en memoria ha calculado el término 300 sin problema, mientras
+que la función que no guarda en memoria, ni siquiera puede calcular el término 100.
+Es posible que hallamos reventado la pila de Maxima, en cuyo caso no es necesario volver a abrir y cerrar el programa,
+tan sólo ir a Maxima en la barra de arriba y seleccionar reiniciar Maxima, aunque tendremos que volver a definir las variables
+y funciones con las que estuviéramos trabajando.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: comment start ]
+Al igual que en las funciones, Maxima permite asignar cualquier tipo de objeto, lista, conjunto, real, natural, función, etc.
+a una variable cualquiera, con la condición de no usar palabras reservadas, que no empiecen por números o usen símbolos que ya
+tienen una función concreta.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+a:"hola";
+dado:random(6)+1;
+conjuntoX:{1,2,3};
+vacío:{};
+_21:21;
+b:37.987;
+listaL:[a,b,c];
+/* [wxMaxima: input   end   ] */
+
+
+
+/* Old versions of Maxima abort on loading files that end in a comment. */
+"Created with wxMaxima 22.04.0"$
